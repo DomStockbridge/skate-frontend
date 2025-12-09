@@ -1,0 +1,19 @@
+{
+  "name": "skate-backend",
+  "version": "1.0.0",
+  "description": "Backend API for skate application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "seed": "node seed.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "better-sqlite3": "^9.2.2"
+  }
+}
+
