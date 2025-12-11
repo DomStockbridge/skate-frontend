@@ -59,6 +59,7 @@ function Table() {
     getTricks()
   }, [])
 
+
   return (
     <table>
       <thead>
@@ -89,3 +90,4 @@ function Table() {
 }
 
 export default Table
+
