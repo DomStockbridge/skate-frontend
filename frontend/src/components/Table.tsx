@@ -14,6 +14,7 @@ function Table() {
       }
 
       const result = await response.json() as IGetTricksResponse;
+      console.log("Data Received ✅", result.tricks)
 
       if (result.error || !result.tricks) {
         throw new Error(`Response status: ${response.status}`);
@@ -59,6 +60,21 @@ function Table() {
     getTricks()
   }, [])
 
+  async function handleDelete(trick: ITrick) {
+    try {
+      const response = await fetch(`http://localhost:3030/api/tricks/${trick.id}`, {
+        method: "DELETE"
+      })
+
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`)
+      }
+
+      setTricks(prev => prev.filter(t => t.id !== trick.id))
+    } catch (error: any) {
+      console.error(error.message)
+    }
+  }
 
   return (
     <table>
@@ -69,19 +85,25 @@ function Table() {
           <th>Category</th>
           <th>Difficulty</th>
           <th>Done</th>
+          <th>Delete</th>
         </tr>
       </thead>
-      <tbody>
-        {tricks.map((trick) => (
-          <tr>
+      <tbody className="table-body">
+        {tricks.slice(0, 10).map((trick) => (
+          <tr key={trick.id}>
             <td>{trick.id}</td>
             <td>{trick.name}</td>
             <td>{trick.category}</td>
             <td>{trick.difficulty}</td>
             <td>
-              <button onClick={() => updateTrick(trick)}>{trick.done ? 'Undo' : 'Do'}</button>
+              <button onClick={() => updateTrick(trick)}>{trick.done ? '✅' : '❌'}</button>
             </td>
-          </tr>)
+            <td>
+              <button onClick={() => handleDelete(trick)}>❌</button>
+            </td>
+            
+        </tr>
+        )
         )}
       </tbody>
     </table>
