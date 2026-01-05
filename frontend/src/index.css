@@ -3,10 +3,6 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -14,10 +10,11 @@
 }
 
 #root {
-  max-width: 1280px;
+  max-width: 100vh;
   margin-inline: auto;
   padding: 2rem;
   text-align: center;
+  color: #f6f3e1;
 }
 
 a {
@@ -25,16 +22,18 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
 
 body {
   margin: 0;
-  display: flex;
+  display: block;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  height: 100vh;
+  background: linear-gradient(to bottom, #908f8f, #424040)
 }
 
 h1 {
@@ -53,9 +52,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -66,14 +67,92 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
   }
 }
 
+header {
+  width: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 2px solid #f6f3e1;
+  padding: 10px;
+}
 
+.logo-container {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+}
 
+#logo {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 170px;
+}
 
+table {
+  margin-inline: auto;
+  margin-top: 50px;
+}
+
+.show-menu {
+  display: block;
+}
+
+.hide-menu {
+  display: none;
+}
+
+#menu-btn {
+  position: relative;
+  height: 50px;
+}
+
+#dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+#dropdown ul {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 0;
+  margin: 5px 0 0 0;
+  width: 80px;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 10;
+}
+
+#dropdown ul li {
+  list-style: none;
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+#dropdown ul li:hover {
+  color: #000000;
+}
+
+#dropdown ul.show-menu {
+  display: flex;
+}

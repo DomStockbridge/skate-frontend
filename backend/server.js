@@ -68,6 +68,7 @@ app.post('/api/tricks', (req, res) => {
 app.put('/api/tricks/:id', (req, res) => {
   try {
     const { name, category, difficulty, done } = req.body;
+
     if (!name || !category || difficulty === undefined) {
       return res.status(400).json({ error: 'Name, category, and difficulty are required' });
     }

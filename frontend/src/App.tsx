@@ -1,9 +1,13 @@
 import Table from './components/table'
+import Header from "./components/Header"
 
 function App() {
 
   return (
-    <Table />
+    <>
+      <Header />
+      <Table />
+    </>
   )
 }
 export default App
