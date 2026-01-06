@@ -3,6 +3,7 @@ import type { IGetTricksResponse, IUpdateTrick, ITrick } from "../types";
 
 function Table() {
   const [tricks, setTricks] = useState<ITrick[]>([])
+  const [visibleTricks, setVisibleTricks] = useState(10)
 
   async function getTricks() {
     // const url = process.env.BASE_URL
@@ -76,38 +77,58 @@ function Table() {
     }
   }
 
-  return (
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Category</th>
-          <th>Difficulty</th>
-          <th>Done</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody className="table-body">
-        {tricks.slice(0, 10).map((trick) => (
-          <tr key={trick.id}>
-            <td>{trick.id}</td>
-            <td>{trick.name}</td>
-            <td>{trick.category}</td>
-            <td>{trick.difficulty}</td>
-            <td>
-              <button onClick={() => updateTrick(trick)}>{trick.done ? '✅' : '❌'}</button>
-            </td>
-            <td>
-              <button onClick={() => handleDelete(trick)}>❌</button>
-            </td>
-            
-        </tr>
-        )
-        )}
-      </tbody>
-    </table>
+  function showMore() {
+    setVisibleTricks(prev => prev + 5)
+    console.log(tricks)
+  }
 
+  function showLess() {
+    setVisibleTricks(prev => prev - 5)
+    console.log(tricks)
+  }
+
+  const visibleTricksArray = tricks.slice(0, visibleTricks)
+
+  return (
+    <>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th className="large-column">Name</th>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th className="large-column">Done</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody className="table-body">
+          {visibleTricksArray.map((trick) => (
+            <tr key={trick.id}>
+              <td>{trick.id}</td>
+              <td className="trick-name">{trick.name}</td>
+              <td>{trick.category}</td>
+              <td>{trick.difficulty}</td>
+              <td>
+                <button
+                  onClick={() => updateTrick(trick)}
+                  className={trick.done ? "landed" : "not-landed"}
+                >{trick.done ? 'Landed' : 'Not yet Landed'}
+                </button>
+              </td>
+              <td>
+                <button className="delete-btn" onClick={() => handleDelete(trick)}>Delete</button>
+              </td>
+            </tr>
+          )
+          )}
+        </tbody>
+      </table>
+      <div className="show-more-or-less-container">
+        <button onClick={showMore}>Show More</button>
+        {visibleTricks <= 10 ? "" : <button onClick={showLess}>Show Less</button>}
+      </div>
+    </>
   )
 }
 

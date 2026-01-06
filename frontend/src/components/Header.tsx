@@ -3,7 +3,7 @@ import React from "react"
 
 export default function Header() {
 
-    const [isMenuVisable, setIsMenuVisable] = React.useState(false)
+    const [isDropdownVisable, setIsDropdownVisable] = React.useState(false)
 
     return (
         <header>
@@ -13,18 +13,18 @@ export default function Header() {
             <h1>Skate</h1>
             <div
                 id="dropdown"
-                onMouseLeave={() => setIsMenuVisable(false)}
+                onMouseLeave={() => setIsDropdownVisable(false)}
+                onMouseEnter={() => setIsDropdownVisable(true)}
             >
-                <button
-                    id="menu-btn"
-                    onMouseEnter={() => setIsMenuVisable(true)}
-                >Menu</button>
+                <button id="menu-btn">Menu</button>
                 <ul
-                    className={isMenuVisable ? "show-menu" : ""}
-                    onMouseEnter={() => setIsMenuVisable(true)}
-                    onMouseLeave={() => setIsMenuVisable(false)}
+                    className={isDropdownVisable ? "show-menu" : ""}
+                    onMouseEnter={() => setIsDropdownVisable(true)}
+                    onMouseLeave={() => setIsDropdownVisable(false)}
                 >
                     <li>Reset</li>
+                    <li>See Deleted Tricks</li>
+                    <li>Help</li>
                 </ul>
             </div>
         </header>
