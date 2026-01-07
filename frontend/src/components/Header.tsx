@@ -1,7 +1,7 @@
 import Logo from "../imgs/Logo.webp"
 import React from "react"
 
-export default function Header() {
+export default function Header({ showDeletedTricks }: { showDeletedTricks: () => void }) {
 
     const [isDropdownVisable, setIsDropdownVisable] = React.useState(false)
 
@@ -22,9 +22,9 @@ export default function Header() {
                     onMouseEnter={() => setIsDropdownVisable(true)}
                     onMouseLeave={() => setIsDropdownVisable(false)}
                 >
-                    <li>Reset</li>
-                    <li>See Deleted Tricks</li>
-                    <li>Help</li>
+                    <li><button className="dropdown-btn">Reset</button></li>
+                    <li><button className="dropdown-btn" onClick={showDeletedTricks}>See Deleted Tricks</button></li>
+                    <li><button className="dropdown-btn">Help</button></li>
                 </ul>
             </div>
         </header>
