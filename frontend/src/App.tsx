@@ -2,7 +2,8 @@ import Table from './components/Table'
 import Header from "./components/Header"
 import DeletedTricks from "./components/DeletedTricks"
 import React from "react"
-import type { IGetTricksResponse, IUpdateTrick, ITrick } from "./types/index";
+import type { IGetTricksResponse, IUpdateTrick, ITrick } from "./types/types";
+
 
 function App() {
 
@@ -80,8 +81,16 @@ function App() {
 
     setDeletedTricks(prev => [...prev, trick])
   }
+
+  function recoverTrick(trick: ITrick) {
+    setTricks(prevTricks => [...prevTricks, trick])
+    setDeletedTricks(prevDeleted => prevDeleted.filter(t => t.id !== trick.id))
+  }
+
+
   return (
     <>
+
       <Header showDeletedTricks={showDeletedTricks} />
       <Table
         tricks={tricks}
@@ -93,6 +102,7 @@ function App() {
         <DeletedTricks
           tricks={deletedTricks}
           onClose={showDeletedTricks}
+          onRecover={recoverTrick}
         />
       )}
     </>

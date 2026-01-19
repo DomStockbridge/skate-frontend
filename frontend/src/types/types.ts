@@ -24,3 +24,11 @@ export interface IGetTricksResponse {
 export interface IUpdateTrick {
   trick: ITrick;
 }
+
+export interface IUser {
+  name: string,
+  dob: string | number
+
+
+}
+

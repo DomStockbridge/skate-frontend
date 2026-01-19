@@ -1,5 +1,5 @@
 import React from "react"
-import type { ITrick } from "../types"
+import type { ITrick } from "../types/types"
 
 function Table({ tricks, onDelete, onUpdate }: {
   tricks: ITrick[]

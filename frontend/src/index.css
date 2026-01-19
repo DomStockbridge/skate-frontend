@@ -55,11 +55,18 @@ button {
   font-weight: 500;
   font-family: inherit;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 button:hover {
-  border-color: #f6f3e1;
+  background: #f6f3e1;
+  color: #000;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
 }
 
 .delete-btn {
@@ -244,7 +251,7 @@ td {
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: #00000099;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -258,4 +265,34 @@ td {
   width: 500px;
   max-height: 80vh;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.modal table {
+  max-width: 500px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.modal button {
+  width: 100px;
+  margin-inline: auto;
+}
+
+@media (max-width: 1000px) {
+  #root {
+    width: 1000px;
+    font-size: 0.8em;
+  }
+
+  table {
+    width: 500px;
+  }
+
+  th {
+    padding: 10px;
+  }
 }
